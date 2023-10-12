@@ -1,5 +1,8 @@
+package test;
+
 import static org.junit.Assert.assertEquals;
 
+import main.Calc;
 import org.junit.Test;
 
 public class CalcTest {
