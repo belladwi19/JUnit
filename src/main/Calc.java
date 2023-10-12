@@ -1,7 +1,7 @@
-// Introduction to Software Testing
+package main;// Introduction to Software Testing
 // Authors: Paul Ammann & Jeff Offutt
 // Chapter 3; page ??
-// See CalcTest.java, DataDrivenCalcTest.java for JUnit tests
+// See test.CalcTest.java, DataDrivenCalcTest.java for JUnit tests
 
 public class Calc
 {

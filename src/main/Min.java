@@ -1,7 +1,7 @@
-// Introduction to Software Testing
+package main;// Introduction to Software Testing
 // Authors: Paul Ammann & Jeff Offutt
 // Chapter 3; page ??
-// See MinTest.java for JUnit tests.
+// See test.MinTest.java for JUnit tests.
 // See DataDrivenMinTest.java for JUnit tests. (Instructor only)
 
 import java.util.*;
@@ -21,13 +21,13 @@ public class Min
     {
        if (list.size() == 0)
        {
-          throw new IllegalArgumentException ("Min.min");
+          throw new IllegalArgumentException ("main.Min.min");
        }
 
        Iterator<? extends T> itr = list.iterator();
        T result = itr.next();
 
-       if (result == null) throw new NullPointerException ("Min.min");
+       if (result == null) throw new NullPointerException ("main.Min.min");
 
        while (itr.hasNext())
        {   // throws NPE, CCE as needed
