@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import main.Min;
 import org.junit.Test;
 
 public class MinTest {
