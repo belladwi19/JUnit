@@ -1,36 +1,87 @@
 package test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
 
-import main.Min;
-import org.junit.Test;
+import java.util.*;
 import main.Min;
 
-public class MinTest {
+class MinTest {
+    private List<String> list;
 
-    @Test
-    public void testMinWithStrings() {
-        List<String> stringList = new ArrayList<>(Arrays.asList("d", "b", "c", "a"));
-        String minString = Min.min(stringList);
-        assertEquals("a", minString);
+    @BeforeEach
+    void setUp() {
+        list = new ArrayList<>();
+    }
+
+    @AfterEach
+    void tearDown() {
+        list = null;
     }
 
     @Test
-    public void testMinWithIntegers() {
-        List<Integer> integerList = new ArrayList<>(Arrays.asList(1, 7, 1, 3));
-        Integer minInteger = Min.min(integerList);
-        assertEquals(Integer.valueOf(1), minInteger);
+    void minNullListTestCase() {
+        list = null;
+        assertThrows(NullPointerException.class, () -> Min.min((list)));
     }
 
     @Test
-    public void testMinWithDoubles() {
-        List<Double> doubleList = new ArrayList<>(Arrays.asList(1.3, 1.1, 1.2, 1.6, 1.5));
-        Double minDouble = Min.min(doubleList);
-        assertEquals(Double.valueOf(1.1), minDouble, 0.0001);
+    void minNullElementTestCase()
+    {
+        list.add(null);
+        list.add("cat");
+        assertThrows(NullPointerException.class, () -> Min.min(list));
+    }
+
+    @Test
+    void minSingleNullElementTestCase()
+    {
+        list.add(null);
+        assertThrows(NullPointerException.class, () -> Min.min(list));
+    }
+
+    @Test
+    @SuppressWarnings ("unchecked")
+    void minMutuallyIncomparableTestCase()
+    {
+        List arrayList = new ArrayList<>();
+        arrayList.add("cat");
+        arrayList.add("dog");
+        arrayList.add(1);
+        assertThrows(ClassCastException.class, () -> Min.min(arrayList));
+    }
+
+    @Test
+    void minEmptyListTestCase()
+    {
+        assertThrows(IllegalArgumentException.class, () -> Min.min(list));
+    }
+
+    @Test
+    void minSingleElementTestCase()
+    {
+        list.add("cat");
+        Object obj = Min.min(list);
+        assertEquals("cat", obj, "Single Element List");
+    }
+
+    @Test
+    void minDoubleElementTestCase()
+    {
+        list.add("dog");
+        list.add("cat");
+        Object obj = Min.min(list);
+        assertEquals("cat", obj, "Double Element List");
+    }
+
+    @Test
+    void minSameElementsTestCase()
+    {
+        list.add("1");
+        list.add("1");
+        assertEquals("1", Min.min(list));
     }
 }
