@@ -9,6 +9,7 @@ import java.util.List;
 
 import main.Min;
 import org.junit.Test;
+import main.Min;
 
 public class MinTest {
 
