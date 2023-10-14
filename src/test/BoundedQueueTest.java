@@ -49,9 +49,37 @@ public class BoundedQueueTest {
     }
 
     @Test
+    public void testEnQueueForNullQueue() {
+        BoundedQueue bQueue = null;
+        assertThrows(NullPointerException.class, () -> bQueue.enQueue(6),
+                "EnQueue should throw exception for null queue");
+    }
+
+    @Test
+    public void testEnQueueSingleElement() {
+        queue.enQueue(1);
+        assertFalse(queue.isEmpty());
+    }
+
+    @Test
+    public void testEnQueueElementsDifferentDataTypes() {
+        queue.enQueue(1);
+        queue.enQueue("");
+        queue.enQueue(new int[]{});
+        assertFalse(queue.isEmpty());
+    }
+
+    @Test
     public void testDeQueueEmptyQueue() {
         assertThrows(IllegalStateException.class, () -> queue.deQueue(),
                 "DeQueue should throw exception for empty queue");
+    }
+
+    @Test
+    public void testDeQueueNullQueue() {
+        BoundedQueue bQueue = null;
+        assertThrows(NullPointerException.class, () -> bQueue.deQueue(),
+                "DeQueue should throw exception for null queue");
     }
 
     @Test
@@ -60,6 +88,14 @@ public class BoundedQueueTest {
         queue.enQueue(2);
         assertEquals(1, queue.deQueue(), "DeQueue should return the first element enQueued");
         assertEquals(2, queue.deQueue(), "DeQueue should return the next first element enQueued");
+        assertTrue(queue.isEmpty());
+    }
+
+    @Test
+    public void testIsEmptyNullQueue() {
+        BoundedQueue bQueue = null;
+        assertThrows(NullPointerException.class, () -> bQueue.isEmpty(),
+                "isEmpty should throw exception for null queue");
     }
 
     @Test
@@ -67,6 +103,13 @@ public class BoundedQueueTest {
         assertTrue(queue.isEmpty(), "Queue should be empty initially");
         queue.enQueue(1);
         assertFalse(queue.isEmpty(), "Queue should not be empty after enQueue operation");
+    }
+
+    @Test
+    public void testIsFullNullQueue() {
+        BoundedQueue bQueue = null;
+        assertThrows(NullPointerException.class, () -> bQueue.isFull(),
+                "isFull should throw exception for null queue");
     }
 
     @Test
