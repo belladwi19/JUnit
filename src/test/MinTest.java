@@ -29,24 +29,21 @@ class MinTest {
     }
 
     @Test
-    void minNullElementTestCase()
-    {
+    void minNullElementTestCase() {
         list.add(null);
         list.add("cat");
         assertThrows(NullPointerException.class, () -> Min.min(list));
     }
 
     @Test
-    void minSingleNullElementTestCase()
-    {
+    void minSingleNullElementTestCase() {
         list.add(null);
         assertThrows(NullPointerException.class, () -> Min.min(list));
     }
 
     @Test
     @SuppressWarnings ("unchecked")
-    void minMutuallyIncomparableTestCase()
-    {
+    void minMutuallyIncomparableTestCase() {
         List arrayList = new ArrayList<>();
         arrayList.add("cat");
         arrayList.add("dog");
@@ -55,22 +52,19 @@ class MinTest {
     }
 
     @Test
-    void minEmptyListTestCase()
-    {
+    void minEmptyListTestCase() {
         assertThrows(IllegalArgumentException.class, () -> Min.min(list));
     }
 
     @Test
-    void minSingleElementTestCase()
-    {
+    void minSingleElementTestCase() {
         list.add("cat");
         Object obj = Min.min(list);
         assertEquals("cat", obj, "Single Element List");
     }
 
     @Test
-    void minDoubleElementTestCase()
-    {
+    void minDoubleElementTestCase() {
         list.add("dog");
         list.add("cat");
         Object obj = Min.min(list);
@@ -78,8 +72,7 @@ class MinTest {
     }
 
     @Test
-    void minSameElementsTestCase()
-    {
+    void minSameElementsTestCase() {
         list.add("1");
         list.add("1");
         assertEquals("1", Min.min(list));
