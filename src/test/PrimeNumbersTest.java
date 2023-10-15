@@ -17,6 +17,21 @@ public class PrimeNumbersTest {
     }
 
     @Test
+    public void testComputePrimesCastedString() {
+        assertThrows(NumberFormatException.class, () -> primeNumbers.computePrimes(Integer.parseInt("number")));
+    }
+
+    @Test
+    public void testComputePrimesCastedObject() {
+        assertThrows(ClassCastException.class, () -> primeNumbers.computePrimes((Integer) new Object()));
+    }
+
+    @Test
+    public void testComputePrimesNull() {
+        assertThrows(NullPointerException.class, () -> primeNumbers.computePrimes((Integer) null));
+    }
+
+    @Test
     public void testComputePrimesForPositiveNumbers() {
         primeNumbers.computePrimes(5);
         assertEquals("[2, 3, 5, 7, 11]", primeNumbers.toString(), "Expected first 5 primes");
